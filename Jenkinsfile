@@ -22,12 +22,12 @@ pipeline {
         }
 
 
-        stage('Deploy') {
-            steps {
-                // Deploy your Go application
-                sh './chatlogs'
-            }
-        }
+        // stage('Deploy') {
+        //     steps {
+        //         // Deploy your Go application
+        //         sh './chatlogs'
+        //     }
+        // }
     }
 
     post {
