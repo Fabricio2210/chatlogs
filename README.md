@@ -18,4 +18,4 @@ Before you can use the Chatlogs app in Go, you need to ensure that you have the 
    ```bash
    git clone https://github.com/Fabricio2210org/chatlogs.git
    cd chatlogs
-   teste
+   
