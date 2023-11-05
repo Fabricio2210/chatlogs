@@ -9,7 +9,12 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building Codebase'
-                sh 'go build -o main main.go'
+                script {
+                    def buildOutput = sh(script: 'go build -o myprogram main.go', returnStatus: true)
+                    if (buildOutput != 0) {
+                        error "Build failed with exit code ${buildOutput}"
+                    }
+                }
             }
         }
         stage('Deploy') {
