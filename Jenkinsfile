@@ -8,7 +8,12 @@ pipeline {
                 checkout scm
             }
         }
-
+        stage('Install Dependencies') {
+            steps {
+                // Ensure dependencies are up to date using go mod tidy
+                sh 'go mod tidy'
+            }
+        }
         stage('Build') {
             steps {
                 // Build your Go application
