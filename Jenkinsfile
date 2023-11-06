@@ -4,7 +4,6 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Checkout your source code from the main branch.
                 checkout scm
             }
         }
@@ -15,16 +14,11 @@ pipeline {
             }
         }
 
-        stage('Build') {
-            steps {
-                // Build your Go application
-                sh 'go build -o chatlogs'
-            }
-        }
-
         stage('Deploy') {
             steps {
-              echo 'done'
+                script {
+                    sh 'nohup ./run.sh > /dev/null 2>&1 &'
+                }
             }
         }
     }
@@ -38,4 +32,5 @@ pipeline {
         }
     }
 }
+
 
