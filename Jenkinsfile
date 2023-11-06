@@ -14,6 +14,13 @@ pipeline {
             }
         }
 
+        stage('Prepare Script') {
+            steps {
+                // Add execute permission to the script
+                sh 'chmod +x run.sh'
+            }
+        }
+
         stage('Deploy') {
             steps {
                 script {
