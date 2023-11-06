@@ -29,7 +29,11 @@ pipeline {
             }
         }
     }
-
+    stage('Debug') {
+        steps {
+            sh 'pwd'
+        }
+    }   
     post {
         success {
             echo 'Build and deployment succeeded!'
