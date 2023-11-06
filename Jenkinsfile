@@ -28,7 +28,7 @@ pipeline {
                 // For simplicity, we'll just print a message
                 echo 'Deploying the application...'
                 script {
-                    sh 'systemctl restart chatlogs' // Use sudo if needed
+                    sh 'sudo systemctl restart chatlogs' // Use sudo if needed
                 }
             }
         }
