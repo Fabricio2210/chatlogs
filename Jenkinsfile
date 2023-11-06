@@ -4,6 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
+                // Checkout your source code from the main branch.
                 checkout scm
             }
         }
@@ -16,15 +17,14 @@ pipeline {
 
         stage('Build') {
             steps {
+                // Build your Go application
                 sh 'go build -o chatlogs'
             }
         }
 
         stage('Deploy') {
             steps {
-                // Start the new Go executable
-                sh 'nohup ./chatlogs > /dev/null 2>&1 &'
-                echo $! > /var/run/chatlogs.pid
+              echo 'done'
             }
         }
     }
