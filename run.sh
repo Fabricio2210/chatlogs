@@ -1,1 +1,2 @@
-go run main.go
+#!/bin/bash
+nohup go run main.go > /dev/null 2>&1 &
