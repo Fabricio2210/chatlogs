@@ -22,17 +22,9 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                script {
-                    // Check if a previous script is running and terminate it
-                    def pidFile = sh(script: 'cat /var/run/chatlogs.pid', returnStatus: true, returnStdout: true).trim()
-                    if (pidFile) {
-                        sh "kill -TERM $pidFile" // Terminate the previous script gracefully
-                    }
-
-                    // Start the new Go executable
-                    sh 'nohup ./chatlogs > /dev/null 2>&1 &'
-                    echo $! > /var/run/chatlogs.pid
-                }
+                // Start the new Go executable
+                sh 'nohup ./chatlogs > /dev/null 2>&1 &'
+                echo $! > /var/run/chatlogs.pid
             }
         }
     }
