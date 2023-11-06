@@ -12,7 +12,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'go get -v' // Download dependencies
-                sh 'go build -o myapp' // Build your Go application
+                sh 'go build -o chatlogs' // Build your Go application
             }
         }
 
