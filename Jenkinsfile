@@ -1,8 +1,9 @@
 pipeline {
-    agent any
+
+    agent any 
 
     stages {
-         stage('Checkout Codebase'){
+        stage('Checkout Codebase'){
             steps{
                 checkout scm: [$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[credentialsId: 'github-ssh-key', url: 'git@github.com:Fabricio2210/chatlogs.git']]] 
             }
@@ -10,17 +11,27 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'go get -v' // Download dependencies
-                sh 'go build -o chatlogs' // Build your Go application
+                echo 'Building Codebase'
             }
         }
 
-        stage('Deploy') {
+        stage('Test'){
             steps {
-                // You can deploy the Go application to your server here
-                // For simplicity, we'll just print a message
-                echo 'Deploying the application...'
+                echo 'Running Tests on changes'
             }
+        }
+        
+        stage('Deploy'){
+            steps{
+                echo 'Done!'
+            }
+        }
+    }
+
+    post {
+
+        always {
+            echo 'Done'
         }
     }
 }
