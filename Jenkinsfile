@@ -4,6 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
+                // Checkout your source code from the main branch.
                 checkout scm
             }
         }
@@ -14,20 +15,17 @@ pipeline {
             }
         }
 
+        stage('Build') {
+            steps {
+                // Build your Go application
+                sh 'go build -o chatlogs'
+            }
+        }
+
         stage('Deploy') {
             steps {
-                script {
-                    // Check if a previous script is running and terminate it
-                    def pidFile = sh(script: 'cat /var/run/run.pid', returnStatus: true, returnStdout: true).trim()
-                    if (pidFile) {
-                        sh "kill -TERM $pidFile" // Terminate the previous script gracefully
-                    }
-
-                    // Start the new script
-                    sh 'nohup ./run.sh > /dev/null 2>&1 &'
-                    echo $! > /var/run/run.pid
-                    
-                }
+                // Restart the Systemd service to pick up the changes
+                sh 'ssh fabricio@127.0.0.1 sudo systemctl restart chatlogs.service'
             }
         }
     }
