@@ -51,7 +51,7 @@ func main() {
 		wrapper.Wrapper("WPIG")
 	})
 	c.Start()
-	fmt.Println("Running")
+	fmt.Println("Teste")
 	<-make(chan struct{})
 }
 
