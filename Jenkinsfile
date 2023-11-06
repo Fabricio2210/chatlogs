@@ -18,7 +18,6 @@ pipeline {
             steps {
                 script {
                     sh 'nohup ./run.sh > /dev/null 2>&1 &'
-                    echo $! > /var/run/run.pid
                 }
             }
         }
