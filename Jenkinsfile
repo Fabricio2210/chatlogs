@@ -4,16 +4,17 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Checkout your source code from a version control system like Git.
+                // Checkout your source code from the main branch.
                 checkout scm
             }
         }
+
         stage('Install Dependencies') {
             steps {
-                // Ensure dependencies are up to date using go mod tidy
                 sh 'go mod tidy'
             }
         }
+
         stage('Build') {
             steps {
                 // Build your Go application
@@ -21,18 +22,17 @@ pipeline {
             }
         }
 
-
-        // stage('Deploy') {
-        //     steps {
-        //         // Deploy your Go application
-        //         sh './chatlogs'
-        //     }
-        // }
+        stage('Deploy') {
+            steps {
+                // Restart the Systemd service to pick up the changes
+                sh 'ssh fabricio@127.0.0.1 sudo systemctl restart chatlogs.service'
+            }
+        }
     }
 
     post {
         success {
-            echo 'Build and deployment succeeded!!'
+            echo 'Build and deployment succeeded!'
         }
         failure {
             echo 'Build or deployment failed!'
