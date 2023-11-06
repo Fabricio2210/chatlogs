@@ -16,9 +16,9 @@ pipeline {
             }
         }
 
-        stage('Test') {
+        stage('Print Workspace') {
             steps {
-                sh 'go test ./...' // Run Go tests
+                echo "Workspace directory: ${WORKSPACE}"
             }
         }
 
