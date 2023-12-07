@@ -12,8 +12,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'go get -v' // Download dependencies
-                sh 'go build -o chatlogs' // Build your Go application]
-                sh 'sudo chmod -R a+rwx .' // Build 
+                sh 'go build -o chatlogs' // Build your Go applicatio
             }
         }
 
@@ -28,9 +27,9 @@ pipeline {
                 // You can deploy the Go application to your server here
                 // For simplicity, we'll just print a message
                 echo 'Deploying the application...'
-                // script {
-                //     sh 'sudo systemctl restart chatlogs' // Use sudo if needed
-                // }
+                script {
+                    sh 'sudo systemctl restart chatlogs' // Use sudo if needed
+                }
             }
         }
     }
