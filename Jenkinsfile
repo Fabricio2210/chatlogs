@@ -13,7 +13,7 @@ pipeline {
             steps {
                 sh 'go get -v' // Download dependencies
                 sh 'go build -o chatlogs' // Build your Go application]
-                sh 'sudo chmod -R a+rwx .' 
+                sh 'sudo chmod -R a+rwx .' // Build 
             }
         }
 
