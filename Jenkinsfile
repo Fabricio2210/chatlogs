@@ -12,7 +12,8 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'go get -v' // Download dependencies
-                sh 'go build -o chatlogs' // Build your Go applicatio
+                sh 'go build -o chatlogs' // Build your Go application]
+                 sh 'sudo chmod -R a+rwx /var/lib/jenkins/workspace' 
             }
         }
 
