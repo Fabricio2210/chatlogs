@@ -50,6 +50,9 @@ func main() {
 	c.AddFunc("0 15 12 * *", func() {
 		wrapper.Wrapper("WPIG")
 	})
+	c.AddFunc("0 20 12 * *", func() {
+		wrapper.Wrapper("THROWBACK")
+	})
 	c.Start()
 	fmt.Println("Running")
 	<-make(chan struct{})
