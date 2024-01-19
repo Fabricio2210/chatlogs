@@ -54,7 +54,7 @@ func main() {
 		wrapper.Wrapper("THROWBACK")
 	})
 	c.Start()
-	fmt.Println("Runing")
+	fmt.Println("Running!!")
 	<-make(chan struct{})
 }
 
